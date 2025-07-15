@@ -17,8 +17,8 @@ def teacher_login(request):
         if user:
             login(request, user)
             return redirect('dashboard')
-        return render(request, "portal/login.html", {"error": "Invalid credentials"})
-    return render(request, "portal/login.html")
+        return render(request, "login.html", {"error": "Invalid credentials"})
+    return render(request, "login.html")
 
 @login_required
 def teacher_logout(request):
@@ -29,7 +29,7 @@ def teacher_logout(request):
 def dashboard(request):
     form = StudentForm()
     students = Student.objects.all()
-    return render(request, "portal/dashboard.html", {"students": students, "form": form})
+    return render(request, "dashboard.html", {"students": students, "form": form})
 
 @login_required
 @require_POST

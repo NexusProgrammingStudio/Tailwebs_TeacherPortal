@@ -1,0 +1,15 @@
+/* static/css/dashboard.css */
+body {
+  background-color: #f3f4f6; /* Tailwind gray-100 */
+}
+
+.form-error,
+.form-error-inline {
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  color: #dc2626; /* Tailwind red-600 */
+}
+
+.card {
+  max-width: 400px;
+}
