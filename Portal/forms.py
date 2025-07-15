@@ -40,5 +40,8 @@ class StudentForm(forms.ModelForm):
 
         # Prevent duplicate name-subject pairs (already handled by unique_together, but form-level check avoids DB error)
         if name and subject:
-            if Student.objects.filter(name__iexact=name.strip(), subject__iexact=subject.strip()).exists():
+            qs = Student.objects.filter(name__iexact=name.strip(), subject__iexact=subject.strip())
+            if self.instance.pk:
+                qs = qs.exclude(pk=self.instance.pk)
+            if qs.exists():
                 raise forms.ValidationError("This student-subject combination already exists.")
