@@ -43,5 +43,3 @@ class StudentForm(forms.ModelForm):
             qs = Student.objects.filter(name__iexact=name.strip(), subject__iexact=subject.strip())
             if self.instance.pk:
                 qs = qs.exclude(pk=self.instance.pk)
-            if qs.exists():
-                raise forms.ValidationError("This student-subject combination already exists.")

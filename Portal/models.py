@@ -8,9 +8,6 @@ class Student(models.Model):
     subject = models.CharField(max_length=50)
     marks = models.PositiveIntegerField(default=0)
 
-    class Meta:
-        unique_together = ['name', 'subject']
-
     def __str__(self):
         return f"{self.name} - {self.subject}"
 
@@ -21,9 +18,6 @@ class Student(models.Model):
 
         if not self.subject.replace(" ", "").isalpha():
             raise ValidationError("Subject should contain only alphabetic characters and spaces.")
-
-        if not (0 <= self.marks <= 100):
-            raise ValidationError("Marks should be between 0 and 100.")
 
     def save(self, *args, **kwargs):
         self.full_clean()  # Ensure clean() is called before saving
